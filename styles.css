@@ -1,10 +1,48 @@
-/* CSS by ///ADD/// YOUR NAME */
+/* CSS by Harbor Neill */
 
 /* Imported Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth,wght@0,18..144,87..112,300..900;1,18..144,87..112,300..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
-/* ///ADD/// CSS Reset */
+/* --------- CSS Reset --------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+html,
+body,
+h1,
+h2,
+h3,
+p,
+blockquote,
+ul,
+ol,
+li,
+figure,
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
 
 /* Root Variables */
 :root {
@@ -13,10 +51,10 @@
   --watchdog-white: #F1FAEE;
   --truth-text: #333;
   --story-subtitle: #457B9D;
-  --font-body: "Source Sans 3", sans-serif;
-  --font-heading: 'Merriweather', serif;
+  --font-body: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-heading: "Merriweather", serif;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-  --transition: all 0.5s ease;
+  --transition: all 0.4s ease;
 }
 
 /* Manual Light/Dark Mode Styles*/
@@ -28,38 +66,388 @@ body.dark-mode {
   background-color: var(--truth-text);
   color: var(--watchdog-white);
 }
+
 #theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: var(--watchdog-white);
   border: 1px solid var(--blue-bulletin);
   border-radius: 1.5rem;
+  background-color: var(--watchdog-white);
   cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
 }
 
-/* ///ADD/// Skip Link Styles */
+body.dark-mode #theme-toggle {
+  background-color: var(--truth-text);
+  border-color: var(--watchdog-white);
+}
 
-/* ///ADD/// Navigation Styles */
+/* --------- Skip Link Styles --------- */
+.skip-link {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
-/* ///ADD/// Global Layout Styles */
+.skip-link:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  background-color: var(--news-flash);
+  color: var(--watchdog-white);
+  z-index: 10;
+}
 
-/* ///ADD/// Global Text Styles */
+/* --------- Global Layout Styles --------- */
 
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
 
-/* ///ADD/// medium styles 620px */
+.site-header {
+  background-color: var(--blue-bulletin);
+  color: var(--watchdog-white);
+  padding: 1rem;
+}
 
+.header-inner {
+  max-width: 70rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
 
-/* ///ADD/// large styles 920px */
+.branding {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
 
+main {
+  max-width: 70rem;
+  margin: 1.5rem auto 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  gap: 2rem;
+}
 
-/* ///ADD/// x-large styles 1024px */
+.site-footer {
+  background-color: var(--blue-bulletin);
+  color: var(--watchdog-white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
 
+/* --------- Global Text Styles --------- */
 
-/* ///ADD/// Interaction Queries for color scheme light and dark and motion preference */
+h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
 
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  margin-bottom: 0.75rem;
+  border-bottom: 4px solid var(--news-flash);
+  padding-bottom: 0.35rem;
+}
 
-/* ///ADD///  Feature Query for :has() that checks if the #menu-toggle is checked */
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+  color: var(--story-subtitle);
+}
+
+p,
+li,
+label,
+legend {
+  font-size: 1rem;
+}
+
+.tagline {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pull-quote {
+  margin-top: 0.75rem;
+  font-style: italic;
+  padding-left: 1rem;
+  border-left: 4px solid var(--story-subtitle);
+}
+
+/* --------- Navigation Styles --------- */
+
+.mobile-nav {
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
+}
+
+.menu-button {
+  display: inline-block;
+  background-color: var(--news-flash);
+  color: var(--watchdog-white);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+}
+
+.menu {
+  margin-top: 0.75rem;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.menu li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--watchdog-white);
+  text-decoration: none;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* show menu when checkbox is checked */
+#menu-toggle:checked + .menu-button + .menu {
+  display: block;
+}
+
+/* --------- Sections --------- */
+
+section {
+  padding-bottom: 0.5rem;
+}
+
+#breaking-news .breaking-story {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  background-color: var(--watchdog-white);
+}
+
+body.dark-mode #breaking-news .breaking-story {
+  background-color: #222;
+}
+
+#breaking-news video {
+  margin-top: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+/* Featured articles layout */
+#featured-articles article {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.4rem;
+  background-color: var(--watchdog-white);
+  box-shadow: var(--shadow);
+}
+
+body.dark-mode #featured-articles article {
+  background-color: #222;
+}
+
+/* Form styles */
+form {
+  margin-top: 0.75rem;
+  max-width: 30rem;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label,
+.form-field legend {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.field-hint {
+  font-size: 0.9rem;
+  color: var(--story-subtitle);
+  margin-bottom: 0.25rem;
+}
+
+input[type="text"],
+input[type="tel"] {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.35rem;
+  border: 1px solid #aaa;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 0.25rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-group label {
+  font-weight: 400;
+}
+
+.button-primary {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--news-flash);
+  color: var(--watchdog-white);
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.button-primary:hover,
+.button-primary:focus-visible {
+  background-color: #b7202e;
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0;
+}
+
+.social-links a {
+  text-decoration: none;
+  color: var(--news-flash);
+  font-weight: 600;
+}
+
+/* --------- medium styles 620px --------- */
+@media screen and (min-width: 620px) {
+  .header-inner {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .mobile-nav {
+    grid-column: auto;
+    justify-self: end;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    background: none;
+    gap: 1rem;
+  }
+
+  .menu li + li {
+    border-top: none;
+  }
+
+  .menu a {
+    padding: 0.25rem 0;
+  }
+
+  #breaking-news .breaking-story {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+    gap: 1rem;
+    align-items: start;
+  }
+}
+
+/* --------- large styles 920px --------- */
+@media screen and (min-width: 920px) {
+  main {
+    grid-template-columns: 2fr 1.5fr;
+    grid-template-areas:
+      "welcome alerts"
+      "breaking breaking"
+      "featured featured"
+      "social social";
+  }
+
+  #welcome { grid-area: welcome; }
+  #alerts { grid-area: alerts; }
+  #breaking-news { grid-area: breaking; }
+  #featured-articles { grid-area: featured; }
+  #social { grid-area: social; }
+
+  #featured-articles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* --------- x-large styles 1024px --------- */
+@media screen and (min-width: 1024px) {
+  main {
+    grid-template-columns: 1.7fr 1.3fr;
+  }
+
+  #featured-articles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* --------- Interaction Queries --------- */
+
+/* Respect system color scheme when user has not toggled manually */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode) {
+    background-color: var(--truth-text);
+    color: var(--watchdog-white);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body:not(.dark-mode) {
+    background-color: var(--watchdog-white);
+    color: var(--truth-text);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* --------- Feature Query for :has() --------- */
 @supports (selector(:has(*))) {
-
+  /* Add a subtle glow to the header when the menu is open */
+  .site-header:has(#menu-toggle:checked) {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+  }
 }
